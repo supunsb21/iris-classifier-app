@@ -5,7 +5,6 @@ from sklearn.datasets import load_iris
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
-import joblib
 import os
 
 # Page configuration
@@ -41,6 +40,11 @@ setosa_img = os.path.join(image_dir, "setosa.jpg")
 versicolor_img = os.path.join(image_dir, "versicolor.jpg")
 virginica_img = os.path.join(image_dir, "virginica.jpg")
 
+# Helper function to load image bytes
+def load_image_bytes(path):
+    with open(path, "rb") as f:
+        return f.read()
+
 if st.session_state.page == "welcome":
     st.title("🌸 Welcome to the Iris Classifier App")
     st.markdown("""
@@ -51,15 +55,18 @@ if st.session_state.page == "welcome":
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.image(setosa_img, caption="Iris Setosa", use_column_width=True)
+        img_bytes = load_image_bytes(setosa_img)
+        st.image(img_bytes, caption="Iris Setosa", use_column_width=True)
         st.markdown("**Setosa** 🌱\n\n- Small and delicate.\n- Short petals and sepals.\n- Typically found in cooler climates.")
 
     with col2:
-        st.image(versicolor_img, caption="Iris Versicolor", use_column_width=True)
+        img_bytes = load_image_bytes(versicolor_img)
+        st.image(img_bytes, caption="Iris Versicolor", use_column_width=True)
         st.markdown("**Versicolor** 🌼\n\n- Medium-sized flowers.\n- Petals vary in length and color.\n- Found in wet meadows and marshes.")
 
     with col3:
-        st.image(virginica_img, caption="Iris Virginica", use_column_width=True)
+        img_bytes = load_image_bytes(virginica_img)
+        st.image(img_bytes, caption="Iris Virginica", use_column_width=True)
         st.markdown("**Virginica** 🌺\n\n- Largest of the three.\n- Long, wide petals.\n- Often found in the eastern U.S.")
 
     st.markdown("---")
@@ -86,11 +93,14 @@ elif st.session_state.page == "predict":
 
     # Show corresponding image
     if species == "setosa":
-        st.image(setosa_img, width=400)
+        img_bytes = load_image_bytes(setosa_img)
+        st.image(img_bytes, width=400)
     elif species == "versicolor":
-        st.image(versicolor_img, width=400)
+        img_bytes = load_image_bytes(versicolor_img)
+        st.image(img_bytes, width=400)
     else:
-        st.image(virginica_img, width=400)
+        img_bytes = load_image_bytes(virginica_img)
+        st.image(img_bytes, width=400)
 
     # Display class probabilities
     st.subheader("Prediction Confidence")
