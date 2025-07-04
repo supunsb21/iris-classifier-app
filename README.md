@@ -17,6 +17,6 @@ This is a simple machine learning web app built using **Streamlit** that classif
 
 ## 🖥 Preview
 
-![App Screenshot](iris-classifier-app/images/preview.png)
+![App Screenshot](/images/preview.png)
 
 ---
