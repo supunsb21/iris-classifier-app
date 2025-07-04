@@ -17,6 +17,6 @@ This is a simple machine learning web app built using **Streamlit** that classif
 
 ## 🖥 Preview
 
-![App Screenshot](images/preview.jpg) 
+![App Screenshot](images/preview.png) 
 
 ---
